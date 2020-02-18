@@ -167,7 +167,10 @@ const setCwd = (pid, action) => {
           exec('echo %userprofile%', function(error, stdout) {
             if (error === null) {
               let homePath =
-                stdout.charAt(0).toLowerCase() + stdout.substring(1);
+                stdout
+                  .trim()
+                  .charAt(0)
+                  .toLowerCase() + stdout.trim().substring(1);
               cwd = homePath + cwd.slice(1);
               setGit(cwd);
             }
